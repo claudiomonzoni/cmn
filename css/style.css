@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css?family=Mukta:300,400,700,800&display=swap");
+@import url(c:\Users\claud\OneDrive\Escritorio\Papeleria Cmn 2020\Landing\splash\css\reset.css);
+html,
+body {
+  background-color: #fff;
+  font-family: "Mukta";
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: #ffb518;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 2.5rem;
+}
+
+@media (max-width: 479px) {
+  a {
+    font-size: 1rem;
+  }
+}
+
+li {
+  list-style: none;
+  list-style-position: inside;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 3rem;
+}
+
+@media (max-width: 479px) {
+  h1 {
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+}
+
+#bandeja {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(100px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  height: 100vh;
+}
+
+@media (max-width: 479px) {
+  #bandeja {
+    -ms-grid-columns: 0;
+        grid-template-columns: 0;
+    -ms-grid-rows: (minmax(100px, 1fr))[auto-fill];
+        grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}
+
+#barraBlanca {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / span 1;
+  position: relative;
+}
+
+@media (max-width: 479px) {
+  #barraBlanca {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1 / span 1;
+  }
+}
+
+#barraBlanca:before {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  right: -15px;
+  content: "";
+  background-color: #fff;
+}
+
+@media (max-width: 479px) {
+  #barraBlanca:before {
+    top: 85%;
+    left: 45vw;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+}
+
+#contenido {
+  grid-column: 2 / -1;
+  background-color: #ffb518;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+@media (max-width: 479px) {
+  #contenido {
+    grid-row: 2 / -1;
+    -ms-grid-columns: 10% 1fr 10%;
+        grid-template-columns: 10% 1fr 10%;
+    -ms-grid-rows: (1fr)[4];
+        grid-template-rows: repeat(4, 1fr);
+  }
+}
+
+#barraMorada {
+  background-color: #270f42;
+  padding: 5rem;
+  grid-column: 2 / -1;
+  height: auto;
+  position: relative;
+  border-radius: 50vh 0 0 50vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (max-width: 479px) {
+  #barraMorada {
+    border-radius: 50vw 50vw 0 0;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-column: 2 / span 1;
+    grid-row: 2 / -1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 2.5rem;
+  }
+}
+
+#barraMorada .logo {
+  padding: 2em;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+#barraMorada h1 {
+  color: #fff;
+}
+
+#barraMorada h1,
+#barraMorada ul {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  grid-column: 1 / -1;
+  grid-row: 0 / -1;
+  padding: 0;
+}
+
+#barraMorada h1 li,
+#barraMorada ul li {
+  padding: 0;
+  margin: 0;
+}
+
+#barraMorada .feis {
+  max-width: 25px;
+}
+
+#barraMorada .tel {
+  font-size: 3rem;
+}
+
+@media (max-width: 479px) {
+  #barraMorada .tel {
+    font-size: 2rem;
+  }
+}
+
+.circulos {
+  width: 80px;
+  position: absolute;
+  top: -15px;
+  right: 15%;
+}
+
+@media (max-width: 479px) {
+  .circulos {
+    top: 40%;
+    right: -10%;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+  }
+}
+
+.circulo {
+  position: absolute;
+  right: 0;
+  height: 90%;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+}
+
+@media (max-width: 479px) {
+  .circulo {
+    height: auto;
+    width: 100vw;
+    left: 0;
+  }
+}
+
+.feis {
+  max-width: 50px;
+}
+/*# sourceMappingURL=style.css.map */

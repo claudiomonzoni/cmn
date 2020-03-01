@@ -1,0 +1,198 @@
+//fuentes roboto para body
+@import url("https://fonts.googleapis.com/css?family=Mukta:300,400,700,800&display=swap");
+//reset
+@import "reset.css";
+
+$amarillo: #ffb518;
+$morado2: #270f42;
+$morado: #4e1e83;
+
+$cel: 479px;
+$nocel: 479px;
+$tableta: 768px;
+$tableta-land: 1024px;
+$hd: 1600px;
+
+@mixin cel {
+  @media (max-width: #{$cel}) {
+    @content;
+  }
+}
+@mixin nocel {
+  @media (min-width: #{$nocel}) {
+    @content;
+  }
+}
+
+@mixin tableta_land {
+  @media (min-width: #{$tableta-land}) and (max-width: #{$hd - 1px}) {
+    @content;
+  }
+}
+
+@mixin tableta {
+  @media (min-width: #{$tableta - 1px}) and (max-width: #{$tableta-land - 1px}) {
+    @content;
+  }
+}
+
+@mixin hd {
+  @media (min-width: #{$hd}) {
+    @content;
+  }
+}
+
+html,
+body {
+  background-color: #fff;
+  font-family: "Mukta";
+  padding: 0;
+  margin: 0;
+}
+a {
+  color: $amarillo;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 2.5rem;
+  @include cel {
+    font-size: 1rem;
+  }
+}
+li {
+  list-style: none;
+  list-style-position: inside;
+}
+h1 {
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 3rem;
+  @include cel {
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+}
+#bandeja {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  height: 100vh;
+  @include cel {
+    grid-template-columns: 0;
+    grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}
+#barraBlanca {
+  @include cel {
+    grid-row: 1 / span 1;
+  }
+
+  grid-column: 1 / span 1;
+  position: relative;
+  &:before {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    right: -15px;
+    content: "";
+    background-color: #fff;
+    @include cel {
+      top: 85%;
+      left: 45vw;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+    }
+  }
+}
+#contenido {
+  @include cel {
+    grid-row: 2 / -1;
+    grid-template-columns: 10% 1fr 10%;
+    grid-template-rows: repeat(4, 1fr);
+  }
+  grid-column: 2 / -1;
+  background-color: $amarillo;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  overflow: hidden;
+}
+
+#barraMorada {
+  background-color: $morado2;
+  padding: 5rem;
+  grid-column: 2 / -1;
+  height: auto;
+  position: relative;
+  border-radius: 50vh 0 0 50vh;
+  display: flex;
+  @include cel {
+    border-radius: 50vw 50vw 0 0;
+    grid-column: 2 / span 1;
+    grid-row: 2 / -1;
+    flex-direction: column;
+    padding: 2.5rem;
+  }
+  .logo {
+    padding: 2em;
+    flex: 1;
+  }
+  h1 {
+    color: #fff;
+  }
+  h1,
+  ul {
+    flex: 2;
+    grid-column: 1 / -1;
+    grid-row: 0 / -1;
+    padding: 0;
+    li {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .feis {
+    max-width: 25px;
+  }
+  .tel {
+    font-size: 3rem;
+    @include cel {
+      font-size: 2rem;
+    }
+  }
+}
+.circulos {
+  width: 80px;
+  position: absolute;
+  top: -15px;
+  right: 15%;
+  @include cel {
+    top: 40%;
+    right: -10%;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+  }
+}
+.circulo {
+  position: absolute;
+  right: 0;
+  height: 90%;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  @include cel {
+    height: auto;
+    width: 100vw;
+    left: 0;
+  }
+}
+
+.feis {
+  max-width: 50px;
+}
