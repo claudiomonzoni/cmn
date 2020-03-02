@@ -144,8 +144,8 @@ h1 {
   top: -15px;
   right: 15%;
   @include cel {
-    top: 40%;
-    right: -10%;
+    top: 45%;
+    right: -13%;
     transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
@@ -163,9 +163,15 @@ h1 {
     height: auto;
     width: 100vw;
     left: 0;
+    top: 50%;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
   }
 }
 
 .feis {
   max-width: 50px;
+  vertical-align: middle;
 }
