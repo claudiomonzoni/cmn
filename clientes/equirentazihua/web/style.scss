@@ -1,0 +1,762 @@
+//fuentes roboto para body
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700,900");
+
+$azul: #0f5baa;
+$naranja: #f26821;
+$negro: #262626;
+
+$cel: 479px;
+$nocel: 479px;
+$tableta: 768px;
+$tableta-land: 1024px;
+$hd: 1600px;
+
+@mixin cel {
+  @media (max-width: #{$cel}) {
+    @content;
+  }
+}
+
+@mixin nocel {
+  @media (min-width: #{$nocel}) {
+    @content;
+  }
+}
+
+@mixin tableta_land {
+  @media (min-width: #{$tableta-land}) and (max-width: #{$hd - 1px}) {
+    @content;
+  }
+}
+
+@mixin tableta {
+  @media (min-width: #{$tableta - 1px}) and (max-width: #{$tableta-land - 1px}) {
+    @content;
+  }
+}
+
+@mixin hd {
+  @media (min-width: #{$hd}) {
+    @content;
+  }
+}
+
+@mixin botones($colores, $hoverColor) {
+  color: $colores;
+  border: solid 3px $colores;
+  padding: 0.3em 0.8em;
+  &:hover {
+    color: $colores;
+    border: solid 3px $hoverColor;
+    background-color: $hoverColor;
+  }
+}
+.boton {
+  @include botones(#fff, $naranja);
+}
+
+@mixin linea($color, $largo, $alto, $top) {
+  &:before {
+    content: "";
+    width: $largo;
+    height: $alto;
+    position: absolute;
+    top: $top;
+    left: 0;
+    background-color: $color;
+    clip-path: polygon(
+      50% 25%,
+      //centro
+        60% 0,
+      100% 0,
+      100% 10%,
+      61% 10%,
+      50% 37%,
+      //centro
+        39% 10%,
+      0 10%,
+      0 0,
+      40% 0
+    );
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: roboto;
+  font-size: calc(112.5% + 0.1vw);
+  color: $negro;
+}
+
+h1,
+h2,
+h3 {
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+h1 {
+  font-size: 2.5em;
+  @include linea(#fff, 30%, 50px, -10%);
+}
+
+h2 {
+  font-size: 1.5em;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+.grid3 {
+  grid-template-columns: repeat(3, 1fr);
+  @include cel {
+    grid-template-columns: 1fr;
+  }
+}
+.grid4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+#contenedor3 {
+  display: grid;
+  @extend .grid3;
+}
+
+.anima {
+  -webkit-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+@keyframes menuAbierto {
+  100% {
+    width: 100%;
+    height: 100vh;
+  }
+  30% {
+    width: 100%;
+    height: 10vh;
+  }
+}
+@keyframes menuCerrado {
+  100% {
+    width: 100%;
+    height: 100vh;
+  }
+  30% {
+    width: 0%;
+    height: 100vh;
+  }
+}
+
+#menuFull {
+  //display: none;
+  // @extend .anima;
+  //visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 0vh;
+  background-color: $naranja;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  ul {
+    flex: 1;
+    padding: 0;
+    margin: 0;
+    height: 65vh;
+    max-width: 80%;
+    @include cel{
+      height: 50%;
+      max-width: 100%;
+    }
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    //border-bottom: solid 1px $azul;
+  }
+  li {
+    margin: 0.5em 1em;
+    text-align: center;
+    display: inline-block;
+  }
+  a {
+    position: relative;
+    font-size: 1.3em;
+    color: #fff;
+    @include cel {
+      font-size: 1.3em;
+    }
+    @extend .anima;
+  }
+
+  a:hover,
+  .active {
+    font-weight: bold;
+    color: $azul;
+
+    &::before {
+      content: "";
+      width: 0.5em;
+      height: 0.5em;
+      background-color: $azul;
+      position: absolute;
+      top: 0.45em;
+      left: -0.7em;
+      border-radius: 50vh;
+    }
+  }
+}
+.menuFullAbierto {
+  // display: block !important;
+  //visibility: visible !important;
+  animation: menuAbierto 1.2s ease forwards;
+}
+
+.desanimaMenu {
+  animation: menuCerrado 1s ease forwards reverse;
+}
+
+header {
+  grid-column: 2 / -1;
+  @include cel {
+    grid-column: 1;
+  }
+  grid-row: 1;
+  background-color: #fff;
+  z-index: 520;
+  display: flex;
+  align-self: start;
+  align-items: stretch;
+  text-align: center;
+  #logo {
+    flex: 1.5;
+    align-content: center;
+
+    img {
+      padding: 0.5em 1em;
+      @include cel {
+        width: 150px;
+      }
+    }
+  }
+
+  .iconosheder {
+    padding: 0 1em;
+    flex: 1;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    @include cel {
+      display: none;
+    }
+  }
+  #herreamientas {
+    position: relative;
+    flex: 1.3;
+    background-color: $negro;
+    text-align: start;
+    padding: 0 1em;
+    display: inherit;
+
+    a {
+      color: #fff;
+      align-self: center;
+    }
+  }
+}
+
+// icono de nav
+.menu-toggle {
+  position: absolute;
+  right: 8%;
+  top: 30%;
+  z-index: 520;
+  width: 30px;
+  height: 22px;
+  background: transparent;
+  border-top: 4px solid;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 4px solid;
+  color: $naranja;
+  font-size: 0;
+  -webkit-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+.menu-toggle:before,
+.menu-toggle:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: currentColor;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: -webkit-transform 0.25s ease-in-out;
+  transition: -webkit-transform 0.25s ease-in-out;
+  -o-transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+
+button.is-active {
+  border-color: transparent;
+  border-left: none;
+}
+button.is-active:before {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+  -ms-transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+button.is-active:after {
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+  -ms-transform: translate(-50%, -50%) rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  vertical-align: middle;
+}
+
+#heroHome {
+  grid-column: 1/ -1;
+  grid-row: 1;
+  background-color: #ccc;
+  height: 90vh;
+  display: inherit;
+  @extend .grid3;
+  @include cel {
+    height: auto;
+  }
+  .imagenHero {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+    background: url(/img/coverHero-EquirentaZihua.jpg) no-repeat $naranja;
+    background-size: cover;
+    display: inherit;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    h1 {
+      grid-column: 2 / span 1;
+      color: #fff;
+
+      @include cel {
+        grid-column: 1 / -1;
+      }
+    }
+    @include cel {
+      grid-column: 1 / -1;
+      grid-row: 1 / span 1;
+      padding: 5em 0 0 3em;
+      height: 30vh;
+    }
+  }
+  .textoHero {
+    grid-column: 3;
+    grid-row: 1;
+    background-color: $naranja;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+
+    h2 {
+      @include linea(#fff, 45%, 30px, -30%);
+    }
+    span {
+      width: 70%;
+      font-size: 0.9em;
+      margin-top: 23%;
+
+      @include cel {
+        margin: 20% 0;
+      }
+    }
+
+    @include cel {
+      grid-column: 1 / -1;
+      grid-row: 2 / span 1;
+    }
+  }
+
+  .buscadorhero {
+    grid-column: 3;
+    background-color: $azul;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include cel {
+      grid-column: 1 / -1;
+      grid-row: 3 / span 1;
+      height: 15vh;
+    }
+  }
+}
+
+//inputs
+input {
+  border: solid 5px $naranja;
+  background-color: transparent;
+  padding: 0.5em 1em;
+  width: 60%;
+  font-size: 0.8em;
+  font-weight: bold;
+  margin: 0;
+}
+button {
+  background-color: $naranja;
+  color: #fff;
+  font-size: 0.8em;
+  font-weight: bold;
+  margin: 0;
+  padding: 0.5em 1em;
+  border: solid 5px $naranja;
+}
+
+::placeholder {
+  color: #fff;
+  opacity: 1;
+}
+
+.tecno {
+  grid-column: 1 / -1;
+  display: inherit;
+  @extend .grid3;
+
+  #motorHonda {
+    grid-column: 1 / span 1;
+    @include cel {
+      grid-column: 1 /-1;
+    }
+  }
+
+  #revolvedora {
+    grid-column: 3 / span 1;
+    @include cel {
+      grid-column: 1 /-1;
+    }
+  }
+  #tecnoHome {
+    background: url(/img/fondo_mallaAzul.jpg) no-repeat;
+    background-size: cover;
+    grid-column: 2 / -1;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    h2 {
+      font-size: 2.5em;
+      color: $naranja;
+      @include linea(#fff, 40%, 50px, -10%);
+      margin-bottom: 0.5em;
+    }
+    @include cel {
+      grid-column: 1 /-1;
+      height: 50vh;
+    }
+  }
+
+  #disfruta {
+    background: url(/img/fondo_trabajadores_azul.jpg) no-repeat;
+    background-size: cover;
+    grid-column: 1 / span 2;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    h2 {
+      font-size: 2.5em;
+      color: $naranja;
+      @include linea(#fff, 40%, 50px, -10%);
+      margin-bottom: 0.5em;
+    }
+    @include cel {
+      grid-column: 1 /-1;
+      height: 50vh;
+    }
+  }
+}
+
+#sliderHome {
+  grid-column: 1 / -1;
+  min-width: 50vh;
+
+  .slider {
+    display: grid;
+    @extend .grid3;
+    .conteImage {
+      grid-column: 1 / span 2;
+      @include cel {
+        grid-column: 1 /-1;
+      }
+      display: flex;
+      flex: 2;
+      background-color: $naranja;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 7%;
+      img {
+        width: 60%;
+        height: auto;
+
+        @include cel {
+          width: 100%;
+        }
+      }
+    }
+    .info {
+      font-size: 0.9em;
+      grid-column: 3 / span 1;
+      @include cel {
+        grid-column: 1 /-1;
+      }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .wraper {
+        padding: 15%;
+      }
+      h2 {
+        color: $azul;
+      }
+      p {
+        font-size: 0.9em;
+        margin-bottom: 2em;
+      }
+      .boton {
+        @include botones($naranja, $naranja);
+      }
+    }
+  }
+}
+
+#mejorOpcion {
+  grid-column: 1/-1;
+  display: flex;
+  height: 30vh;
+  align-items: center;
+  justify-content: center;
+  @include cel {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: 15%;
+    padding-top: 15%;
+  }
+  img {
+    max-width: 300px;
+    padding-right: 0.5em;
+    @include cel {
+      max-width: 260px;
+      padding-bottom: 0.3em;
+    }
+  }
+  h2 {
+    color: $naranja;
+    font-size: 2em;
+    @include cel {
+      font-size: 1.5em;
+    }
+  }
+}
+@mixin cuadroHome($colorFondo, $colorH2) {
+  background-color: $colorFondo;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 15%;
+  height: 60vh;
+  @include cel {
+    height: 40vh;
+  }
+  justify-content: center;
+  img {
+    width: 25%;
+  }
+  h2 {
+    color: $colorH2;
+    padding-top: 0.5em;
+  }
+  font-size: 0.9em;
+}
+#recuadrosHome {
+  grid-column: 1/-1;
+  display: inherit;
+  @extend .grid3;
+  #recuadro1 {
+    @include cuadroHome($negro, $naranja);
+  }
+  #recuadro2 {
+    @include cuadroHome($azul, $naranja);
+  }
+  #recuadro3 {
+    @include cuadroHome($naranja, $azul);
+  }
+}
+#opiniones {
+  grid-column: 1/-1;
+  display: inherit;
+  @extend .grid3;
+
+  #suscribete {
+    grid-column: 1 / span 1;
+    display: flex;
+    align-items: center;
+    input {
+      display: flex;
+    }
+    h3 {
+      color: $naranja;
+      font-size: 2.5em;
+      line-height: 0.5em;
+    }
+    font-size: 0.8em;
+    padding: 15%;
+    background-color: rgb(235, 235, 235);
+    ::placeholder {
+      color: $azul;
+      opacity: 1;
+    }
+
+    @include cel {
+      grid-column: 1;
+    }
+  }
+
+  #testimoniales {
+    grid-column: 2/-1;
+    width: 100%;
+    box-sizing: border-box;
+    @include cel {
+      grid-column: 1;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h3 {
+      color: $azul;
+      font-weight: lighter;
+      @include linea($azul, 15%, 35px, -50%);
+      margin-top: 6%;
+    }
+    blockquote footer {
+      color: $naranja;
+      padding: 1em 0;
+      .negocio {
+        font-weight: bold;
+      }
+    }
+    .wrap {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 7%;
+      @include cel {
+        padding: 15%;
+        display: grid;
+      }
+    }
+  }
+}
+
+footer {
+  grid-column: 1/-1;
+  display: inherit;
+  @extend .grid3;
+  color: #fff;
+  font-size: 0.8em;
+
+  #direccion {
+    display: flex;
+    padding-left: 7%;
+    align-items: center;
+    .wrap {
+      max-width: 60%;
+      @include cel {
+        max-width: 100%;
+      }
+    }
+    grid-column: 1 / span 2;
+    @include cel {
+      grid-column: 1;
+      padding: 15%;
+    }
+    background-color: $negro;
+    img {
+      max-width: 50%;
+      @include cel {
+        max-width: 80%;
+      }
+    }
+    ul {
+      border-top: solid 1px #fff;
+      padding: 1em 0;
+      li {
+        display: inline;
+        padding-left: 0.4em;
+        a {
+          color: #fff;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  #contacto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .wrap {
+      max-width: 60%;
+      padding: 2em 0;
+      @include cel {
+        padding: 15%;
+        max-width: 100%;
+      }
+    }
+    grid-column: 3/-1;
+    @include cel {
+      grid-column: 1;
+    }
+    background-color: $azul;
+    h3 {
+      color: $naranja;
+      font-size: 2em;
+    }
+    p {
+      margin: 0.5em 0;
+    }
+    img {
+      max-width: 80px;
+      padding: 5% 0;
+    }
+  }
+}
